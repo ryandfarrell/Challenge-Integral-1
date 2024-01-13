@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=0.75in]{geometry}
+
+\title{Challenge Integral 1}
+
+\begin{document}
+\begin{align*}
+                          & \int x^k \ln^m(x) \; dx  \\ 
+    \frac{1}{(k+1)^{m+1}} & \int (k+1) x^k (k+1)^m \ln^m (x) \; dx  \\   
+    \frac{1}{(k+1)^{m+1}} & \int (k+1) x^k \ln^m(x^{k+1}) \; dx 
+\end{align*}
+Let $u=x^{k+1}$, so $du=(k+1)x^{k}$.
+\begin{align*}
+    \frac{1}{(k+1)^{m+1}} & \int \ln^m(u) \; du
+\end{align*}
+Using integration by parts, let $u=\ln^m(u)$ and $dv=dx$.
+\begin{align*}
+    \frac{1}{(k+1)^{m+1}} \left( u \ln^m(u) - m \int \ln^{m-1} (u) \; du \right)
+\end{align*}
+And so on.
+\begin{equation*}
+    \frac{1}{(k+1)^{m+1}} \left( u \ln^m(u) - m u \ln^{m-1}(u) + m (m-1) \int \ln^{m-2} (u) \; du \right) \\
+\end{equation*}
+\begin{equation*}
+    \frac{1}{(k+1)^{m+1}} \left( u \ln^m(u) - m u \ln^{m-1}(u) + m (m-1) u  \ln^{m-2}(u) - m (m-1) (m-2) \int \ln^{m-3} (u) \; du \right)
+\end{equation*}
+\\
+The summation that emerges takes the following form, where \( m^{\underline{i}} \) is the falling factorial.
+\begin{equation*}
+    \frac{u}{(k+1)^{m+1}} \sum_{i=0}^m (-1)^i m^{\underline{i}} \ln^{m-i}(u)
+\end{equation*}
+\begin{equation*}
+    \frac{x^{k+1}}{(k+1)^{m+1}} \sum_{i=0}^m (-1)^i m^{\underline{i}} \ln^{m-i}(x^{k+1})
+\end{equation*}
+\begin{equation*}
+    x^{k+1} \sum_{i=0}^m \frac{(-1)^i m^{\underline{i}} \ln^{m-i}(x^{k+1})}{(k+1)^{m+1}}
+\end{equation*}
+\begin{equation*}
+    x^{k+1} \sum_{i=0}^m \frac{(-1)^i m^{\underline{i}} (k+1)^{m-i} \ln^{m-i}(x)}{(k+1)^{m+1}}
+\end{equation*}
+\begin{equation*}
+    x^{k+1} \sum_{i=0}^m \frac{(-1)^i m^{\underline{i}} \ln^{m-i}(x)}{(k+1)^{i+1}}
+\end{equation*}
+\begin{equation*}
+    0 \leq rsrank(f) \leq 2^{|S|}
+\end{equation*}
+\begin{equation*}
+    |S| \leq rsrank(f) \leq 2^{|S|}-1
+\end{equation*}
+
+\pagebreak
+
+25. Let $G$ be a graph of order 5 or more. Prove that at most one of $G$ and $\overline{G}$ is bipartite.
+
+\vspace{7pt}
+
+\emph{Proof:}
+    Let $G$ be a graph of order 5 or more. If $G$ is not bipartite, then we have the desired result as at most one of $G$ and $\overline{G}$ is bipartite (it's either none of them or just $\overline{G}$). If  $G$ is bipartite, then we can split the vertex set $V(G)= U \cup W$ into two sets $U$ and $W$ such that all edges of $G$ go between vertices of $U$ and vertices of $W$. Since $G$ has order 5 or more, at least one of $U$ or $W$ will contain 3 or more vertices. Without loss of generality, suppose $|U| \geq 3$. Let $x,y,z \in U$, then since $G$ is bipartite, $xy,xz,yx \not\in E(G)$. By definition of the compliment $\overline{G}$, we have that $xy,xz,yx \in E(\overline{G})$. But that means $\overline{G}$ contains the 3-cycle $x,y,z,x$, so $\overline{G}$ cannot be bipartite. Again we have that at most one of $G$ and $\overline{G}$ are bipartite (since it is only $G$), therefore we've proven the statement.
+    
+\end{document}
